@@ -78,6 +78,60 @@ const deletePostById = async (req, res, next) => {
   res.send(postDeleted);
 };
 
+const getTop5RatedPosts = async (req, res, next) => {
+  try {
+    const topRatedPosts = await Review.aggregate([
+      // Group the reviews by postId and calculate the average rating for each group
+      {
+        $group: {
+          _id: "$postId",
+          averageRating: { $avg: "$rating" }
+        }
+      },
+      // Sort the groups in descending order by average rating
+      { $sort: { averageRating: -1 } },
+      // Limit the results to the top 5 posts
+      { $limit: 5 },
+      // Look up the post details for each group
+//       {
+//         $lookup: {
+//           from: "posts",
+//           localField: "postId",
+//           foreignField: "_id",
+//           as: "postDetails"
+//         }
+//       },
+//       {
+//   $project: {
+//     _id: 1,
+//     title: 1,
+//     content: 1,
+//     creatorId: 1
+//   }
+// }
+    ]);
+    const posts = [];
+    for (const post of topRatedPosts) {
+      const postDetails = await Post.findOne({ _id: post._id });
+      if (postDetails) {
+        posts.push({
+          ...post,
+          postDetails: {
+            _id: postDetails._id,
+            title: postDetails.title,
+            content: postDetails.content,
+            creatorId: postDetails.creatorId
+          }
+        });
+      }
+    }
+    
+    res.send(posts);
+    // res.send(topRatedPosts);
+  } catch (err) {
+    return next(new AppError("Error getting top rated posts", 500));
+  }
+};
 module.exports = {
-    createPost, getPostById, getAllPosts, updatePostById, deletePostById 
+    createPost, getPostById, getAllPosts, updatePostById, deletePostById ,getTop5RatedPosts
 };

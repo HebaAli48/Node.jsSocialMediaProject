@@ -4,6 +4,7 @@ const router = express.Router();
 const { reviewValidation,reviewUpdateValidation} = require('../utils/reviewValidation.js');
 const { createReview, getReviewById, getAllReviews, updateReviewById, deleteReviewById } = require('../controllers/reviewController.js');
 
+// router.get('/top', getTop5RatedPosts);
 router.get('/', getAllReviews);
 router.get('/:id', getReviewById);
 router.post('/',reviewValidation, createReview);

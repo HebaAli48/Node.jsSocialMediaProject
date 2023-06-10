@@ -9,8 +9,9 @@ const bcrypt = require("bcrypt");
 const Joi = require("joi");
 
 const { postValidation,updatePostValidation} = require('../utils/postValidation.js');
-const { createPost, getPostById, getAllPosts, updatePostById, deletePostById } = require('../controllers/postController');
+const { createPost, getPostById, getAllPosts, updatePostById, deletePostById,getTop5RatedPosts } = require('../controllers/postController');
 
+router.get('/top', getTop5RatedPosts);
 router.get('/', getAllPosts);
 router.get('/:id', getPostById);
 router.post('/', postValidation, createPost);

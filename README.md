@@ -28,7 +28,7 @@ bcrypt-
 jsonwebtoken-
 cloudinary-
 multer-
-mongoose-
+mongoose.
 ## Usage
 use postman to do requests of (crud) of user ,post,comment and review , 
 use Robo 3T  or mongoDBCompass to show the results of requests.

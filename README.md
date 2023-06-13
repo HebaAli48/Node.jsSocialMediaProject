@@ -20,14 +20,14 @@ Implement request validation using Joi or similar packages
 Implement error handling strategy
 
 ## Installation
-express-
-express-async-errors-
-dotenv-
-Joi-
-bcrypt-
-jsonwebtoken-
-cloudinary-
-multer-
+express,
+express-async-errors,
+dotenv,
+Joi,
+bcrypt,
+jsonwebtoken,
+cloudinary,
+multer,
 mongoose.
 ## Usage
 use postman to do requests of (crud) of user ,post,comment and review , 

@@ -8,13 +8,13 @@ Note: implement Role based authentication where there are [admin, user]
 -Create Comments Model and crud operation
 -Create Review System where users* can create reviews for posts created by creators* (Review Model and crud operation)
 -Each user can have profile pictures 
-Hint: you can use multer package to upload images
-Hint: you can upload images to cloudinary free hosting service for images ;)
+by using multer package to upload images & upload images to cloudinary free hosting service for images.
 --Notes:
 Protect the apis so that only allowed Roles can use certain apis 
 Example: only admin role can delete creators,users,posts…
 When getting each post retrieve all its comments and reviews with it.
 When getting user retrieve its posts with it
+When deleting user the associated posts,comments and reviews were deleted
 Protect sensitive information such as passwords form returning
 Implement request validation using Joi or similar packages
 Implement error handling strategy
